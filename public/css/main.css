@@ -300,3 +300,16 @@ font-size: 50px;
 color: #598CF8;
 text-shadow: 1px 1px black;
 }
+
+/* .sentence {
+  padding-top: 17px;
+  padding-bottom: 17px;
+} */
+
+.innerSentence {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: solid #f5f5f5 10px;
+  border-bottom: solid #f5f5f5 10px;
+  margin: 0
+}
