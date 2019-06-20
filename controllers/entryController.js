@@ -249,7 +249,7 @@ router.get('/new', function(req, res) {
 
 router.get('/', function(req, res) {
 	//Index route for ALL entries
-	
+
 	let comparing = false;
 	let compareYellow;
 	let compareGreen;
@@ -368,7 +368,7 @@ router.get('/', function(req, res) {
 				pageNumber = 1;
 			}
 			let entriesArray = splitEntries(pageNumber, foundEntries);
-			
+
 			//If comparing, change entriesArray to be sorted by
 			//similarity to the entry we're comparing to:
 
@@ -376,7 +376,7 @@ router.get('/', function(req, res) {
 			{
 				entriesArray = sortBySimilarity(entriesArray, compareYellow, compareGreen, compareBlue, compareLightGreen, compareFadedBlue);
 			}
-			
+
 			res.render('entry/index.ejs', {
 				entries: entriesArray,
 				pageNum: pageNumber,
@@ -455,6 +455,9 @@ router.get('/:id', function(req, res)
 				{
 					console.log(`GET /entries/${req.params.id}`);
 					const text = sentenceArrayMaker(foundEntry.text)
+
+					// console.log(text);
+
 					res.render('entry/show.ejs', {
 						entry: foundEntry,
 						text: text,
@@ -462,7 +465,7 @@ router.get('/:id', function(req, res)
 					});//end of res.render
 				}
 			});
-			
+
 		}
 	});
 });
@@ -520,20 +523,20 @@ router.put('/:id', async function(req, res)
 		//console.log("req.body.string: " + req.body.string);
 		let sectionsArray = stringParser(req.body.string);
 		//console.log("sectionsArray: " + sectionsArray);
-		
+
 		sectionsArray = await apiCall(sectionsArray);
 		//console.log("sectionsArray: " + sectionsArray);
-		
+
 		sectionsArray.forEach((section) => {
 			section.data = extractData(section);
 		})
-		
+
 		const entryData = compileData(sectionsArray)
 		//console.log("entryData: " + entryData);
-		
+
 		const engagementScore = engagementScoreCalc(entryData)
 		//console.log("engagementScore: " + engagementScore);
-		
+
 		const updatedEntry = await Entry.findByIdAndUpdate(newEntry._id, {
 			text: sectionsArray,
 			data: entryData,
@@ -542,7 +545,7 @@ router.put('/:id', async function(req, res)
 			new: true
 		})
 		//console.log("updatedEntry: " + updatedEntry);
-		
+
 		const id = updatedEntry._id;
 		res.redirect(`/entries/${id}`)
 	}
