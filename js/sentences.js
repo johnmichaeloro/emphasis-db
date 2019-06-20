@@ -11,10 +11,6 @@ class Sentence {
 const sentenceArrayMaker = (array) => {
   const sentenceArray = []
 
-  const util = require('util')
-  // console.log(array);
-  console.log(util.inspect(array, {showHidden: false, depth: null}))
-
   array.forEach((paragraph)=>{
     paragraph.analysis.analysis.forEach((sentenceString)=>{
       sentenceString.sections.forEach((sectionString)=>{
@@ -40,6 +36,8 @@ const sentenceArrayMaker = (array) => {
         let displacement = 0;
         sentenceString.signs.forEach((sign) => {
 
+          if (sign.section_type === sectionString.section_type){
+
           let newSentenceWithSigns = sentence.text;
 
           let start = sign.index_begin - sentenceString.sentence.index_begin + displacement;
@@ -50,12 +48,13 @@ const sentenceArrayMaker = (array) => {
           displacement += 26;
 
           sentence.text = newSentenceWithSigns;
+        }
         });
 
 
 
         sentence.text += ' ';
-        console.log(sentence.text);
+        // console.log(sentence.text);
         sentenceArray.push(sentence);
 
       })

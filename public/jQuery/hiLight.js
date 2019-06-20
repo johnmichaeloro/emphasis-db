@@ -2,6 +2,7 @@
 // Functions and Variables
 
 let hover    = false;
+let signs    = false;
 let allColor = false;
 let yellow   = false;
 let green    = false;
@@ -184,6 +185,18 @@ const wordButton      = () => {
   }
 }
 
+const signButton = () => {
+  if (signs) {
+    $('.sign').css('border', '')
+    $('#signButton').css('border', ' 1px solid black')
+    signs = false;
+  } else {
+    $('.sign').css('border', '1px solid black')
+    signs = true;
+    $('#signButton').css({'border':'8px groove black','border-right':'8px groove white','border-left':'8px groove white'})
+  }
+}
+
 
 // Event Listeners
 
@@ -204,4 +217,7 @@ $('#greenButton').on('click', function(){
 })
 $('#wordButton').on('click', function(){
   wordButton();
+})
+$('#signButton').on('click', function(){
+  signButton();
 })
