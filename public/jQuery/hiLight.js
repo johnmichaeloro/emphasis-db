@@ -8,7 +8,7 @@ let green    = false;
 let blue     = false;
 let word     = false;
 
-const hoverButton     = () => {
+const hoverButton = () => {
 if (hover) {
   $('span').off()
   $('span').css('background-color', '')
@@ -17,58 +17,40 @@ if (hover) {
 } else {
   $('span').off()
   $('span').css('background-color', '')
-  $('.green').mouseover(function(){
-    $('.green').css('background-color', '#4DFC9C')
-    $('.lightGreen').css('background-color', '#CCFFE1')
-  })
-  $('.green').mouseout(function(){
-    $('.green').css('background-color', '')
-    $('.lightGreen').css('background-color', '')
-  })
-  $('.yellow').mouseover(function(){
-    $('.yellow').css('background-color', '#FFF459')
-  })
-  $('.yellow').mouseout(function(){
-    $('.yellow').css('background-color', '')
-  })
-  $('.fadedBlue').mouseover(function(){
-    $('.lightBlue').css('background-color', '#59F1FF')
-    $('.fadedBlue').css('background-color', '#D2F9FF')
-    $('.darkBlue').css('background-color', '#598CF8')
-  })
-  $('.fadedBlue').mouseout(function(){
-    $('.lightBlue').css('background-color', '')
-    $('.fadedBlue').css('background-color', '')
-    $('.darkBlue').css('background-color', '')
-  })
-  $('.lightBlue').mouseover(function(){
-    $('.lightBlue').css('background-color', '#59F1FF')
-    $('.fadedBlue').css('background-color', '#D2F9FF')
-    $('.darkBlue').css('background-color', '#598CF8')
-  })
-  $('.lightBlue').mouseout(function(){
-    $('.lightBlue').css('background-color', '')
-    $('.fadedBlue').css('background-color', '')
-    $('.darkBlue').css('background-color', '')
-  })
-  $('.darkBlue').mouseover(function(){
-    $('.lightBlue').css('background-color', '#59F1FF')
-    $('.fadedBlue').css('background-color', '#D2F9FF')
-    $('.darkBlue').css('background-color', '#598CF8')
-  })
-  $('.darkBlue').mouseout(function(){
-    $('.lightBlue').css('background-color', '')
-    $('.fadedBlue').css('background-color', '')
-    $('.darkBlue').css('background-color', '')
-  })
-  $('.lightGreen').mouseover(function(){
-    $('.green').css('background-color', '#4DFC9C')
-    $('.lightGreen').css('background-color', '#CCFFE1')
-  })
-  $('.lightGreen').mouseout(function(){
-    $('.lightGreen').css('background-color', '')
-    $('.green').css('background-color', '')
-  })
+  $('.sentence').mouseover(function(e){
+
+    let color = $(e.target).attr('color');
+
+    console.log(color);
+
+    if (color === "yellow") {
+
+      $(e.target).css('background-color', '#FFF459')
+
+    } else if (color === "blue") {
+
+      $(e.target).parent().children(".fadedBlue").css('background-color',"#D2F9FF");
+      $(e.target).parent().children(".lightBlue").css('background-color',"#59F1FF");
+      $(e.target).parent().children(".darkBlue").css('background-color',"#598CF8");
+
+    } else if (color === "green") {
+
+      $(e.target).css('background-color', '#4DFC9C')
+
+    } else if (color === "twoGreens") {
+
+      $(e.target).parent().children(".lightGreen").css('background-color',"#CCFFE1");
+      $(e.target).parent().children(".green").css('background-color',"#4DFC9C");
+
+    }
+
+  });
+
+  $('.sentence').mouseout(function(e){
+    $(e.target).css('background-color', 'transparent')
+    $(e.target).parent().children().css('background-color', 'transparent')
+  });
+
   hover    = true;
   allColor = false;
   green    = false;
