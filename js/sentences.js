@@ -41,7 +41,7 @@ const sentenceArrayMaker = (array) => {
           let start = sign.index_begin - sentenceString.sentence.index_begin + displacement;
           let end = sign.index_end - sentenceString.sentence.index_begin + displacement;
 
-          newSentenceWithSigns = newSentenceWithSigns.slice(0, start) + "<span class='sign'>" + newSentenceWithSigns.slice(start, end) + "</span>" + newSentenceWithSigns.slice(end);
+          newSentenceWithSigns = newSentenceWithSigns.slice(0, start) + `<span class='sign'>` + newSentenceWithSigns.slice(start, end) + "</span>" + newSentenceWithSigns.slice(end);
 
           displacement += 26;
 
