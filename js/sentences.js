@@ -1,4 +1,5 @@
 "use strict";
+const util = require('util');
 
 class Sentence {
   constructor(string,color){
@@ -9,6 +10,7 @@ class Sentence {
 
 
 const sentenceArrayMaker = (array) => {
+
   const sentenceArray = []
 
   array.forEach((paragraph)=>{
@@ -30,22 +32,27 @@ const sentenceArrayMaker = (array) => {
           sentence.color = 'lightGreen';
         }
 
-        for (let i = sectionString.index_begin; i < sectionString.index_end; i++){
+        for (let i = sectionString.index_begin; i <= sectionString.index_end; i++){
           sentence.text += paragraph.text[i]
         }
+
         let displacement = 0;
         sentenceString.signs.forEach((sign) => {
+
+          if (sign.section_type === sectionString.section_type){
 
           let newSentenceWithSigns = sentence.text;
 
           let start = sign.index_begin - sentenceString.sentence.index_begin + displacement;
           let end = sign.index_end - sentenceString.sentence.index_begin + displacement;
 
-          newSentenceWithSigns = newSentenceWithSigns.slice(0, start) + `<span class='sign'>` + newSentenceWithSigns.slice(start, end) + "</span>" + newSentenceWithSigns.slice(end);
+          newSentenceWithSigns = newSentenceWithSigns.slice(0, start) + "<span class='sign'>" + newSentenceWithSigns.slice(start, end) + "</span>" + newSentenceWithSigns.slice(end);
 
           displacement += 26;
 
           sentence.text = newSentenceWithSigns;
+
+        }
 
         });
 

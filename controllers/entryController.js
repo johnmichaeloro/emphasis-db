@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const util = require('util');
 const router = express.Router();
 const User = require('../models/userSchema');
 const Entry = require('../models/entrySchema');
@@ -412,11 +413,17 @@ router.post('/', async function(req, res) {
 		});
 
 		let sectionsArray = stringParser(req.body.string);
+
 		sectionsArray = await apiCall(sectionsArray);
+
+		console.log(util.inspect(sectionsArray, {showHidden: false, depth: null}));
+
 		sectionsArray.forEach((section) => {
 			section.data = extractData(section);
-		})
-		const entryData = compileData(sectionsArray)
+		});
+
+		// this just counts the greens, blues, yellows
+		const entryData = compileData(sectionsArray);
 
 		const engagementScore = engagementScoreCalc(entryData)
 
@@ -437,11 +444,6 @@ router.post('/', async function(req, res) {
 })
 router.get('/:id', function(req, res)
 {
-	//Show route for a particular entry
-	//The show.ejs file will have some if statements
-	//that will show different information based
-	//on whether or not the current user is the
-	//one who created the entry
 
 	Entry.findById(req.params.id, function(err, foundEntry)
 	{
@@ -454,9 +456,11 @@ router.get('/:id', function(req, res)
 				else
 				{
 					console.log(`GET /entries/${req.params.id}`);
+
 					const text = sentenceArrayMaker(foundEntry.text)
 
-					// console.log(text);
+					console.log("text before showPage ++++++++++++++++++++++++++++++++++++++++++")
+					console.log(util.inspect(text, {showHidden: false, depth: null}));
 
 					res.render('entry/show.ejs', {
 						entry: foundEntry,
