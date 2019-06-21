@@ -52,6 +52,48 @@ if (hover) {
     $(e.target).parent().children().css('background-color', 'transparent')
   });
 
+
+
+
+  $('.sign').mouseover(function(e){
+
+    let color = $(e.target).parent().attr('color');
+
+    console.log(color);
+
+    if (color === "yellow") {
+
+      $(e.target).parent().css('background-color', '#FFF459')
+
+    } else if (color === "blue") {
+
+      $(e.target).parent().parent().children(".fadedBlue").css('background-color',"#D2F9FF");
+      $(e.target).parent().parent().children(".lightBlue").css('background-color',"#59F1FF");
+      $(e.target).parent().parent().children(".darkBlue").css('background-color',"#598CF8");
+
+    } else if (color === "green") {
+
+      $(e.target).parent().css('background-color', '#4DFC9C')
+
+    } else if (color === "twoGreens") {
+
+      $(e.target).parent().parent().children(".lightGreen").css('background-color',"#CCFFE1");
+      $(e.target).parent().parent().children(".green").css('background-color',"#4DFC9C");
+
+    }
+
+  });
+
+  $('.sign').mouseout(function(e){
+    $(e.target).parent().css('background-color', 'transparent')
+    $(e.target).parent().parent().children().css('background-color', 'transparent')
+  });
+
+
+
+
+
+
   hover    = true;
   allColor = false;
   green    = false;
@@ -186,6 +228,11 @@ const wordButton      = () => {
 }
 
 const signButton = () => {
+
+  $(".sign:empty").each( function () {
+    $(this).remove();
+    });
+    
   if (signs) {
     $('.sign').css('border', '')
     $('#signButton').css('border', ' 1px solid black')

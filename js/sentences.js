@@ -36,8 +36,6 @@ const sentenceArrayMaker = (array) => {
         let displacement = 0;
         sentenceString.signs.forEach((sign) => {
 
-          if (sign.section_type === sectionString.section_type){
-
           let newSentenceWithSigns = sentence.text;
 
           let start = sign.index_begin - sentenceString.sentence.index_begin + displacement;
@@ -48,7 +46,7 @@ const sentenceArrayMaker = (array) => {
           displacement += 26;
 
           sentence.text = newSentenceWithSigns;
-        }
+
         });
 
 
