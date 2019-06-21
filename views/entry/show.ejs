@@ -55,10 +55,8 @@
 		<p class="text">
 
     <pre id="preDis">
-
 				<% for (let i = 0; i < text.length; i++) { %><% if (text[i].color === "lightGreen") { %>
-					<span color="twoGreens" class="sentence">
-						<span color="twoGreens" class="lightGreen innerSentence">
+					<span color="twoGreens" class="sentence"><span color="twoGreens" class="lightGreen innerSentence">
 							<%-text[i].text%>
 						</span>
 						<span color="twoGreens" class="green innerSentence">
@@ -84,7 +82,7 @@
 							<%-text[i].text%>
 						</span>
 						<span color="blue" class="darkBlue innerSentence">
-							<%-text[i + 2].text%>
+							<%-text[i + 1].text%>
 						</span>
 						<% i++ %>
 					</span>
