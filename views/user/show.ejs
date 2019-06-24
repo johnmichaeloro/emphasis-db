@@ -23,10 +23,10 @@
 		</p>
 		<br><br><br><br><br><br>
 		<h3>All Your Entries</h4>
-			<% if (entries[0].title){ %>
+			<% if (entries[0]){ %>
 		<ul>
 			<% for (let i = 0; i < entries.length; i++){ %>
-				<a href="entries/<%=entries[i]._id%>"><li><h4><%=entries[i].title%></h4></li></a>
+				<a href="/entries/<%=entries[i]._id%>"><li><h4><%=entries[i].title%></h4></li></a>
 			<% } %>
 		</ul>
 		<%} else {%>
