@@ -11,8 +11,8 @@ class Sentence {
 
 const sentenceArrayMaker = (array) => {
 
-  console.log("array before sentences ++++++++++++++++++++++++++++++++++++++++++")
-  console.log(util.inspect(array, {showHidden: false, depth: null}));
+  // console.log("array before sentences ++++++++++++++++++++++++++++++++++++++++++")
+  // console.log(util.inspect(array, {showHidden: false, depth: null}));
 
   const sentenceArray = []
 
@@ -35,8 +35,19 @@ const sentenceArrayMaker = (array) => {
           sentence.color = 'lightGreen';
         }
 
+        if (sentence.color !== ''){
+
         for (let i = sectionString.index_begin; i <= sectionString.index_end; i++){
+          if (i >= sectionString.index_end - 3){
+            if (paragraph.text[i] === "."){
+              sentence.text += paragraph.text[i];
+              break;
+            } else {
+              sentence.text += paragraph.text[i]
+            }
+          } else {
           sentence.text += paragraph.text[i]
+        }
         }
 
         let displacement = 0;
@@ -67,9 +78,10 @@ const sentenceArrayMaker = (array) => {
         // console.log(sentence.text);
         sentenceArray.push(sentence);
 
-      })
-    })
-  })
+        }
+      });
+    });
+  });
 
 
   return sentenceArray

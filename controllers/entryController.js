@@ -416,7 +416,7 @@ router.post('/', async function(req, res) {
 
 		sectionsArray = await apiCall(sectionsArray);
 
-		console.log(util.inspect(sectionsArray, {showHidden: false, depth: null}));
+		// console.log(util.inspect(sectionsArray, {showHidden: false, depth: null}));
 
 		sectionsArray.forEach((section) => {
 			section.data = extractData(section);
@@ -459,8 +459,8 @@ router.get('/:id', function(req, res)
 
 					const text = sentenceArrayMaker(foundEntry.text)
 
-					console.log("text before showPage ++++++++++++++++++++++++++++++++++++++++++")
-					console.log(util.inspect(text, {showHidden: false, depth: null}));
+					// console.log("text before showPage ++++++++++++++++++++++++++++++++++++++++++")
+					// console.log(util.inspect(text, {showHidden: false, depth: null}));
 
 					if (!foundUser) {
 						foundUser = {
