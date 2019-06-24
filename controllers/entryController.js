@@ -462,6 +462,12 @@ router.get('/:id', function(req, res)
 					console.log("text before showPage ++++++++++++++++++++++++++++++++++++++++++")
 					console.log(util.inspect(text, {showHidden: false, depth: null}));
 
+					if (!foundUser) {
+						foundUser = {
+							displayname: "This User Does Not Exist"
+						}
+					}
+
 					res.render('entry/show.ejs', {
 						entry: foundEntry,
 						text: text,

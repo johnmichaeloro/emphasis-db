@@ -11,10 +11,13 @@ class Sentence {
 
 const sentenceArrayMaker = (array) => {
 
+  console.log("array before sentences ++++++++++++++++++++++++++++++++++++++++++")
+  console.log(util.inspect(array, {showHidden: false, depth: null}));
+
   const sentenceArray = []
 
   array.forEach((paragraph)=>{
-    paragraph.analysis.analysis.forEach((sentenceString)=>{
+    paragraph.analysis.analysis.forEach((sentenceString, sentenceIndex)=>{
       sentenceString.sections.forEach((sectionString)=>{
         let sentence = new Sentence('','');
 
@@ -43,8 +46,10 @@ const sentenceArrayMaker = (array) => {
 
           let newSentenceWithSigns = sentence.text;
 
-          let start = sign.index_begin - sentenceString.sentence.index_begin + displacement;
-          let end = sign.index_end - sentenceString.sentence.index_begin + displacement;
+
+            let start = sign.index_begin - sentenceString.sentence.index_begin + (sentenceString.sentence.index_begin -sectionString.index_begin) + displacement;
+
+            let end = sign.index_end - sentenceString.sentence.index_begin + (sentenceString.sentence.index_begin - sectionString.index_begin) + displacement;
 
           newSentenceWithSigns = newSentenceWithSigns.slice(0, start) + "<span class='sign'>" + newSentenceWithSigns.slice(start, end) + "</span>" + newSentenceWithSigns.slice(end);
 
