@@ -267,6 +267,7 @@ router.get('/bot-newsapi/stop', function(req, res)
 
 
 //THIS BOT TEMPORARILY DISABLED! RUN IT MANUALLY.
+const jobNewsApi={running:false};
 // //NewsAPI bot runs every 15 minutes
 // const jobNewsApi = new CronJob('* */15 * * * *', function() {
 //   console.log("CRON: getNewsApi");
