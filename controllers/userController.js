@@ -5,6 +5,17 @@ const router = express.Router();
 const User = require('../models/userSchema');
 const Entry = require('../models/entrySchema');
 
+const splitEntries = (num,array) => {
+	const number = (num * 16);
+	const newArray = [];
+	for (let i = (number - 16); i < number; i++){
+		if (array[i]){
+		newArray.push(array[i])
+	}
+	}
+	return newArray
+}
+
 router.get('/', function(req, res)
 {
 	User.find({}, function(err, foundUsers)
@@ -152,9 +163,22 @@ router.get('/:id', function(req, res)
 				if (err) {
 						console.log(err);
 				} else {
+
+					let pageNumber;
+					if (req.query.number){
+						pageNumber = req.query.number;
+					} else {
+						pageNumber = 1;
+					}
+					pageNumber = parseInt(pageNumber)
+					let entriesArray = splitEntries(pageNumber, foundEntries);
+
 				res.render('user/show.ejs', {
 					user: foundUser,
-					entries: foundEntries
+					entries: entriesArray,
+					totalEnt: foundEntries,
+					pageNum: pageNumber,
+					userId: foundUser._id
 					})
 				}
 			})

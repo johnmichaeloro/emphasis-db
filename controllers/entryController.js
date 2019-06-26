@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const util = require('util');
 const router = express.Router();
 const User = require('../models/userSchema');
 const Entry = require('../models/entrySchema');
@@ -249,7 +250,7 @@ router.get('/new', function(req, res) {
 
 router.get('/', function(req, res) {
 	//Index route for ALL entries
-	
+
 	let comparing = false;
 	let compareYellow;
 	let compareGreen;
@@ -368,7 +369,7 @@ router.get('/', function(req, res) {
 				pageNumber = 1;
 			}
 			let entriesArray = splitEntries(pageNumber, foundEntries);
-			
+
 			//If comparing, change entriesArray to be sorted by
 			//similarity to the entry we're comparing to:
 
@@ -376,7 +377,7 @@ router.get('/', function(req, res) {
 			{
 				entriesArray = sortBySimilarity(entriesArray, compareYellow, compareGreen, compareBlue, compareLightGreen, compareFadedBlue);
 			}
-			
+
 			res.render('entry/index.ejs', {
 				entries: entriesArray,
 				pageNum: pageNumber,
@@ -412,11 +413,17 @@ router.post('/', async function(req, res) {
 		});
 
 		let sectionsArray = stringParser(req.body.string);
+
 		sectionsArray = await apiCall(sectionsArray);
+
+		// console.log(util.inspect(sectionsArray, {showHidden: false, depth: null}));
+
 		sectionsArray.forEach((section) => {
 			section.data = extractData(section);
-		})
-		const entryData = compileData(sectionsArray)
+		});
+
+		// this just counts the greens, blues, yellows
+		const entryData = compileData(sectionsArray);
 
 		const engagementScore = engagementScoreCalc(entryData)
 
@@ -437,11 +444,6 @@ router.post('/', async function(req, res) {
 })
 router.get('/:id', function(req, res)
 {
-	//Show route for a particular entry
-	//The show.ejs file will have some if statements
-	//that will show different information based
-	//on whether or not the current user is the
-	//one who created the entry
 
 	Entry.findById(req.params.id, function(err, foundEntry)
 	{
@@ -454,7 +456,18 @@ router.get('/:id', function(req, res)
 				else
 				{
 					console.log(`GET /entries/${req.params.id}`);
+
 					const text = sentenceArrayMaker(foundEntry.text)
+
+					// console.log("text before showPage ++++++++++++++++++++++++++++++++++++++++++")
+					// console.log(util.inspect(text, {showHidden: false, depth: null}));
+
+					if (!foundUser) {
+						foundUser = {
+							displayname: "This User Does Not Exist"
+						}
+					}
+
 					res.render('entry/show.ejs', {
 						entry: foundEntry,
 						text: text,
@@ -462,7 +475,7 @@ router.get('/:id', function(req, res)
 					});//end of res.render
 				}
 			});
-			
+
 		}
 	});
 });
@@ -520,20 +533,20 @@ router.put('/:id', async function(req, res)
 		//console.log("req.body.string: " + req.body.string);
 		let sectionsArray = stringParser(req.body.string);
 		//console.log("sectionsArray: " + sectionsArray);
-		
+
 		sectionsArray = await apiCall(sectionsArray);
 		//console.log("sectionsArray: " + sectionsArray);
-		
+
 		sectionsArray.forEach((section) => {
 			section.data = extractData(section);
 		})
-		
+
 		const entryData = compileData(sectionsArray)
 		//console.log("entryData: " + entryData);
-		
+
 		const engagementScore = engagementScoreCalc(entryData)
 		//console.log("engagementScore: " + engagementScore);
-		
+
 		const updatedEntry = await Entry.findByIdAndUpdate(newEntry._id, {
 			text: sectionsArray,
 			data: entryData,
@@ -542,7 +555,7 @@ router.put('/:id', async function(req, res)
 			new: true
 		})
 		//console.log("updatedEntry: " + updatedEntry);
-		
+
 		const id = updatedEntry._id;
 		res.redirect(`/entries/${id}`)
 	}

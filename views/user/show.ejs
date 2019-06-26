@@ -24,11 +24,73 @@
 		<br><br><br><br><br><br>
 		<h3>All Your Entries</h4>
 			<% if (entries[0].title){ %>
-		<ul>
-			<% for (let i = 0; i < entries.length; i++){ %>
-				<a href="entries/<%=entries[i]._id%>"><li><h4><%=entries[i].title%></h4></li></a>
-			<% } %>
-		</ul>
+				<% if (totalEnt.length > 0){%>
+			      <% for (let i = 0; i < entries.length; i++) { %>
+			        <% if (entries[i].text[0]){ %>
+			        <div class="col-md-5 entry">
+			        <a href="/entries/<%=entries[i]._id%>" class="entryLink">
+			        <div class="col-md-12">
+			            <h4><%=entries[i].title%></h4>
+			            <div class="">
+			            <div class="entryInfo"><%=entries[i].string.length%> Characters</div>
+			            <div class="entryInfo"><%=entries[i].author%></div>
+			            <div class="entryInfo"><%=entries[i].publisher%></div>
+			            <div class="entryInfo"><%=entries[i].publicationYear%></div>
+			            <div class="entryInfo"><%=entries[i].engagementScore%> Engagement</div>
+			            </div>
+			            <p class="col-md-12 entryPDisplay">
+			                <%=entries[i].text[0].text%>
+			            </p>
+			        </div>
+			        </a>
+			      </div>
+			      <% } else if (session.usertype === "admin"){%>
+			        <form action="/entries/<%=entries[i]._id%>/delete" method="get">
+			          <button type="submit" >REMOVE CORRUPT ENTRY</button>
+			        </form>
+			      <% } %>
+			      <% } %>
+						<%} else {%>
+							<div class="col-md-10 entry">
+							<div class="col-md-12">
+									<h4 style="font-size:30px">No Entries Of This Type</h4>
+									<a href="/entries/new"><h3 class="createPrompt">Create One?</h5></a>
+									<a href="/entries"><h3 class="createPrompt">Try Again?</h5></a>
+							</div>
+							</a>
+						</div>
+						<%}%>
+				</div>
+			<br><br><br>
+			<div class="container selectPage col-md-12">
+				<div class="col-md-12 pageForm">
+					<form action="/users/<%=userId%>" method="get">
+							<% let base = pageNum - 2;%>
+							<% let top = pageNum + 5;%>
+							<% if (top > (totalEnt.length/16)){top = (Math.ceil(totalEnt.length/16))} %>
+							<% if (base <= 0){base = 1} %>
+							<% if (pageNum > 5){%>
+							<button type="submit" name="number" value="<%=1%>">1...</button>
+							<% } %>
+							<% for (let i = base; i <= top; i++){ %>
+								<button type="submit" name="number" value="<%=i%>"><%=i%></button>
+							<% } %>
+
+					</form>
+					</div>
+				</div>
+				<div
+				class="col-md-3 entry"
+				style="background: transparent; border: none; box-shadow: none; margin: 0">
+				</div>
+				<div class="col-md-6 entry">
+				<div class="col-md-12">
+
+						<a href="/entries/new"><h3 class="createPrompt">Create Entry?</h5></a>
+
+				</div>
+				</a>
+			</div>
 		<%} else {%>
 			<a href="/entries/new">Create A New Entry</a>
 			<% } %>
