@@ -21,6 +21,18 @@
 			Display name: <%=user.displayname%><br>
 			User type: <%=user.usertype%><br>
 		</p>
+
+		<div
+		class="col-md-6 entry"
+		style="width: 300px; height:90px"
+		>
+		<div class="col-md-12">
+
+				<a href="/entries/new"><h3 class="createPrompt">Create Entry?</h5></a>
+
+		</div>
+		</a>
+	</div>
 		<br><br><br><br><br><br>
 		<h3>All Your Entries</h4>
 			<% if (entries[0].title){ %>
@@ -79,18 +91,6 @@
 					</form>
 					</div>
 				</div>
-				<div
-				class="col-md-3 entry"
-				style="background: transparent; border: none; box-shadow: none; margin: 0">
-				</div>
-				<div class="col-md-6 entry">
-				<div class="col-md-12">
-
-						<a href="/entries/new"><h3 class="createPrompt">Create Entry?</h5></a>
-
-				</div>
-				</a>
-			</div>
 		<%} else {%>
 			<a href="/entries/new">Create A New Entry</a>
 			<% } %>
