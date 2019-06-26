@@ -121,6 +121,26 @@ function sortBySimilarity(entriesArray, compareYellow, compareGreen, compareBlue
 
 
 
+router.get('/insights/forauthor/:author', async function(req, res)
+{
+	//Returns some JSON data with information about the
+	//author requested, such as:
+	//Number of entries
+	//Average engagement score
+	
+	//Find all the entries with that author:
+
+	Entry.find({author: req.params.author}, function(err, foundEntries)
+	{
+		//Now we have all the entries for the requested author
+		
+	})
+});
+
+
+
+
+
 router.get('/insights', async function(req, res)
 {
 	let categories =
@@ -203,6 +223,11 @@ router.get('/insights', async function(req, res)
 		{
 			if (foundEntries[i].contentType == 'non-fiction') {foundEntries[i].contentType = 'other';}
 			//console.log(`contentType: ${foundEntries[i].contentType}`);
+			
+			
+			insights['all'].quantity++;
+			insights['all'].avgEng = insights['all'].avgEng + foundEntries[i].engagementScore;
+
 			insights[foundEntries[i].contentType].quantity++;
 			insights[foundEntries[i].contentType].avgEng = insights[foundEntries[i].contentType].avgEng + foundEntries[i].engagementScore;
 		}
@@ -211,6 +236,7 @@ router.get('/insights', async function(req, res)
 		{
 			insights[categories[i]].avgEng = insights[categories[i]].avgEng / insights[categories[i]].quantity;
 		}
+
 		console.log(insights);
 		res.render('entry/insights.ejs', {insights: insights});
 	});
