@@ -121,8 +121,10 @@ function sortBySimilarity(entriesArray, compareYellow, compareGreen, compareBlue
 
 
 
-router.get('/insights/forauthor/:author', async function(req, res)
+router.get('/insights/forauthor/:author', function(req, res)
 {
+	console.log(`GET /insights/forauthor/${req.params.author}`);
+
 	//Returns some JSON data with information about the
 	//author requested, such as:
 	//Number of entries
@@ -133,10 +135,76 @@ router.get('/insights/forauthor/:author', async function(req, res)
 	Entry.find({author: req.params.author}, function(err, foundEntries)
 	{
 		//Now we have all the entries for the requested author
-		
-	})
+		if (foundEntries.length == 0)
+		{
+			res.json(
+			{
+				num: 0
+			});
+		}
+		else
+		{
+			//Calculate average engagement score!
+			let avgEng = 0;
+
+			for (let i = 0; i < foundEntries.length; i++)
+			{
+				avgEng = avgEng + foundEntries[i].engagementScore;
+			}
+
+			avgEng = avgEng / foundEntries.length;
+
+			res.json(
+			{
+				num: foundEntries.length,
+				avgEng: avgEng
+			});
+		}
+	});
 });
 
+
+router.get('/insights/forpublisher/:publisher', function(req, res)
+{
+	console.log(`GET /insights/forpublisher/${req.params.publisher}`);
+
+	//Returns some JSON data with information about the
+	//author requested, such as:
+	//Number of entries
+	//Average engagement score
+	
+	//Find all the entries with that author:
+
+	Entry.find({publisher: req.params.publisher}, function(err, foundEntries)
+	{
+		//Now we have all the entries for the requested author
+		if (foundEntries.length == 0)
+		{
+			res.json(
+			{
+				num: 0
+			});
+		}
+		else
+		{
+			//Calculate average engagement score!
+			let avgEng = 0;
+
+			for (let i = 0; i < foundEntries.length; i++)
+			{
+				avgEng = avgEng + foundEntries[i].engagementScore;
+			}
+
+			avgEng = avgEng / foundEntries.length;
+
+			res.json(
+			{
+				num: foundEntries.length,
+				avgEng: avgEng
+			});
+		}
+	});
+});
 
 
 
