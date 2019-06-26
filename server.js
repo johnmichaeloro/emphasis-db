@@ -3,6 +3,7 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+require('dotenv').config()
 
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(session(
 {
 	//TODO: what should this secret string be?
-	secret: "avmjlajurialajfrlirjalifjsadligjliajalerjalkejfidsjvlzkcxjvlaisjdifjsaf",
+	secret: process.env.sessionSecret,
 	resave: false, //only save if there has been a change
 	saveUninitialized: false, //only save if we have mutated the session - this is what should be done for logins
 	logged: false,
