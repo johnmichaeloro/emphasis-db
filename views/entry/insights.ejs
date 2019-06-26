@@ -14,6 +14,17 @@
 		
 		<h2>Insights</h2>
 
+		<p>Find average engagement score for a particular publisher:</p><br>
+		<input type="text" placeholder="Publisher Name" id="publisher"></input>
+		<button onClick="pubInfoClick()">Go</button>
+		<p id="pubInfoText"></p>
+
+
+		<p>Find average engagement score for a particular author:</p><br>
+		<input type="text" placeholder="Author Name" id="author"></input>
+		<button onClick="authorInfoClick()">Go</button>
+		<p id="authorInfoText"></p>
+
 		<p>
 			Some quick statistics on the Emphasis-DB Database!
 		</p><br>
@@ -71,6 +82,8 @@
 	</div>
 
 	<% include ../partials/jsLinks.ejs %>
+
+	<script type="text/javascript" src="/js/insights.js"></script>
 
 </body>
 </html>

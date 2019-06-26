@@ -60,7 +60,7 @@ async function getNewsApi ()
 			let testEntry = await Entry.findOne({title: topHeadlines[i].title, author: topHeadlines[i].author});
 
 			
-			if (!testEntry && topHeadlines[i].source.name !== "Newsweek" && topHeadlines[i].source.name !== "CNN") { //(BLACKLIST)
+			if (await !testEntry && topHeadlines[i].source.name !== "Newsweek" && topHeadlines[i].source.name !== "CNN") { //(BLACKLIST)
 				let result = await Article(topHeadlines[i].url)
 				let publicationYear = getYear(topHeadlines[i].publishedAt)
 				let sanitizedString = stringSanitizer(result.text)
@@ -127,13 +127,13 @@ async function getNewsApi ()
 			} //end if for checking topheadlines.source.name blacklist
 			else
 			{
-				if (testEntry)
+				if (await testEntry)
 				{
-					await console.log("bot-newsapi: duplicate skipped");
+					console.log("bot-newsapi: duplicate skipped");
 				}
 				else
 				{
-					await console.log("bot-newsapi: BLACKLISTED");
+					console.log("bot-newsapi: BLACKLISTED");
 				}
 				continue;
 			}
@@ -163,7 +163,7 @@ router.get('/', function(req, res)
 		res.send(`You do not have the authority to do this!!<br><a href="/">Back to home</a>`)
 	}
 	else
-	{	
+	{
 		User.find({usertype: 'bot'}, function(err, foundUsers)
 		{
 			if (err) {console.log(err);}
@@ -231,10 +231,15 @@ router.get('/bot-newsapi/start', function(req, res)
 	else
 	{
 		console.log('GET bot/bot-newsapi/start');
-		jobNewsApi.start();
+		//jobNewsApi.start();
+		
 		//console.log(jobNewsApi);
 		//console.log(jobNewsApiStatus);
-		res.send("Success");
+		
+		//res.send("Success");
+
+		//disabled for now:
+		res.send("This cron job is disabled for now -Collin");
 	}
 });
 
@@ -250,10 +255,15 @@ router.get('/bot-newsapi/stop', function(req, res)
 	else
 	{
 		console.log('GET bot/bot-newsapi/stop');
-		jobNewsApi.stop();
+		//jobNewsApi.stop();
+		
 		//console.log(jobNewsApi);
 		//console.log(jobNewsApiStatus);
-		res.send("Success");
+		
+		//res.send("Success");
+
+		//disabled for now:
+		res.send("This cron job is disabled for now -Collin");
 	}
 });
 
