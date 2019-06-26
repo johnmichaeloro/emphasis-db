@@ -49,7 +49,7 @@ function stringSanitizer(str)
 					str = tempstr1.concat(tempstr2);
 					changed = true;
 					break;
-			}	
+			}
 		}
 		switch (str[i])
 		{
