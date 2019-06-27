@@ -5,9 +5,9 @@ pubInfoClick = async () =>
 	document.getElementById("pubInfoText").innerHTML = "Waiting...";
 
 	const publisher = document.getElementById("publisher").value;
-	
+
 	//console.log(publisher);
-	
+
 	let response = await fetch("/entries/insights/forpublisher/" + publisher);
 
 	response = await response.json();
@@ -15,7 +15,7 @@ pubInfoClick = async () =>
 	if (response.num != 0)
 	{
 		document.getElementById("pubInfoText").innerHTML = `
-			Average Engagement Score for ${publisher} is ${response.avgEng}<br>
+			<span class="pubStatement">${publisher}</span> Average Engagement Score is <span class="engagementScoreInsightFound">${response.avgEng}</span><br>
 			There are a total of ${response.num} entries by this publisher.`
 	}
 	else
@@ -30,9 +30,9 @@ authorInfoClick = async () =>
 	document.getElementById("authorInfoText").innerHTML = "Waiting...";
 
 	const author = document.getElementById("author").value;
-	
+
 	//console.log(publisher);
-	
+
 	let response = await fetch("/entries/insights/forauthor/" + author);
 
 	response = await response.json();
@@ -40,7 +40,7 @@ authorInfoClick = async () =>
 	if (response.num != 0)
 	{
 		document.getElementById("authorInfoText").innerHTML = `
-			Average Engagement Score for ${author} is ${response.avgEng}<br>
+			<span class="pubStatement">${author}</span> Average Engagement Score is <span class="engagementScoreInsightFound">${response.avgEng}</span><br>
 			There are a total of ${response.num} entries by this author.`
 	}
 	else

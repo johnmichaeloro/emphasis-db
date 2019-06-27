@@ -1,0 +1,45 @@
+.pubStatement {
+  font-size: 20px;
+  font-style: italic;
+  border-top: 4px groove #FFF459;
+}
+
+.engagementScoreInsight {
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 4px groove #4DFC9C;
+  width: 175px;
+  display: inline-block;
+  text-align: center;
+}
+
+.engagementScoreInsightFound {
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 4px groove #4DFC9C;
+  width: auto;
+}
+
+.categoryTitle {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+  border-top: 4px groove #FFF459;
+  width: 175px;
+  display: inline-block;
+}
+
+.insightCategory {
+  margin: 20px;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 2;
+  background-color: #e8e8e8;
+  word-break: normal;
+  word-wrap: normal;
+  border: 2px groove #CCFFE1;
+  border-radius: 4px;
+  height: 40vh;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px 0px black;
+}

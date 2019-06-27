@@ -129,7 +129,7 @@ router.get('/insights/forauthor/:author', function(req, res)
 	//author requested, such as:
 	//Number of entries
 	//Average engagement score
-	
+
 	//Find all the entries with that author:
 
 	Entry.find({author: req.params.author}, function(err, foundEntries)
@@ -172,7 +172,7 @@ router.get('/insights/forpublisher/:publisher', function(req, res)
 	//author requested, such as:
 	//Number of entries
 	//Average engagement score
-	
+
 	//Find all the entries with that author:
 
 	Entry.find({publisher: req.params.publisher}, function(err, foundEntries)
@@ -291,8 +291,8 @@ router.get('/insights', async function(req, res)
 		{
 			if (foundEntries[i].contentType == 'non-fiction') {foundEntries[i].contentType = 'other';}
 			//console.log(`contentType: ${foundEntries[i].contentType}`);
-			
-			
+
+
 			insights['all'].quantity++;
 			insights['all'].avgEng = insights['all'].avgEng + foundEntries[i].engagementScore;
 

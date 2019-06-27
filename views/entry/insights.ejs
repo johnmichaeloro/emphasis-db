@@ -3,6 +3,7 @@
 <head>
 	<title>Home</title>
 	<% include ../partials/cssLinks.ejs %>
+	<link rel="stylesheet" type="" href="/css/insights.css">
 </head>
 <body>
 
@@ -11,7 +12,7 @@
 	<br><br><br><br>
 
 	<div class="container">
-		
+
 		<h2>Insights</h2>
 
 		<p>Find average engagement score for a particular publisher:</p><br>
@@ -32,50 +33,82 @@
 		<hr>
 
 		<p>
-			Categories: <br>
-			ALL:<br>
+			<div class="insightCategory">
+			<div class="categoryTitle">ALL:</div><br>
 			Quantity: <%=insights.all.quantity%><br>
-			Average engagement score: <%=insights.all.avgEng%><br>
-			<br>
-			News:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.all.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">News:</div><br>
 			Quantity: <%=insights.news.quantity%><br>
-			Average engagement score: <%=insights.news.avgEng%><br>
-			<br>
-			Opinion:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.news.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Opinion:</div><br>
 			Quantity: <%=insights.opinion.quantity%><br>
-			Average engagement score: <%=insights.opinion.avgEng%><br>
-			<br>
-			Fiction:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.opinion.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Fiction:</div><br>
 			Quantity: <%=insights.fiction.quantity%><br>
-			Average engagement score: <%=insights.fiction.avgEng%><br>
-			<br>
-			Marketing:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.fiction.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Marketing:</div><br>
 			Quantity: <%=insights.marketing.quantity%><br>
-			Average engagement score: <%=insights.marketing.avgEng%><br>
-			<br>
-			Business:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.marketing.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Business:</div><br>
 			Quantity: <%=insights.business.quantity%><br>
-			Average engagement score: <%=insights.business.avgEng%><br>
-			<br>
-			Legal:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.business.avgEng)%>
+			</div>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Legal:</div><br>
 			Quantity: <%=insights.legal.quantity%><br>
-			Average engagement score: <%=insights.legal.avgEng%><br>
-			<br>
-			Technical:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.legal.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Technical:</div><br>
 			Quantity: <%=insights.technical.quantity%><br>
-			Average engagement score: <%=insights.technical.avgEng%><br>
-			<br>
-			Academic:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.technical.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Academic:</div><br>
 			Quantity: <%=insights.academic.quantity%><br>
-			Average engagement score: <%=insights.academic.avgEng%><br>
-			<br>
-			Oratory:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.academic.avgEng)%>
+			</div><br>
+		</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Oratory:</div><br>
 			Quantity: <%=insights.oratory.quantity%><br>
-			Average engagement score: <%=insights.oratory.avgEng%><br>
-			<br>
-			Other:<br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.oratory.avgEng)%></div><br>
+			</div>
+			<div class="insightCategory">
+			<div class="categoryTitle">Other:</div><br>
 			Quantity: <%=insights.other.quantity%><br>
-			Average engagement score: <%=insights.other.avgEng%><br>
+			Average engagement score: <div class="engagementScoreInsight" >
+				<%=Math.round(insights.other.avgEng)%>
+			</div><br>
+		</div>
 			<br>
 		</p>
 
