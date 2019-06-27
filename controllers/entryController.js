@@ -118,7 +118,41 @@ function sortBySimilarity(entriesArray, compareYellow, compareGreen, compareBlue
 }
 
 
+router.get('/authors', function(req, res)
+{
+	//Returns an array containing the names of all of the
+	//unique authors in the entire set of entries
 
+	const authors = [];
+
+	Entry.find({}, function(err, foundEntries)
+	{
+		foundEntries.forEach((entry) =>
+		{
+			if (!authors.includes(entry.author)) {authors.push(entry.author);}
+		});
+
+		res.json(authors);
+	});
+});
+
+router.get('/publishers', function(req, res)
+{
+	//Returns an array containing the names of all of the
+	//unique publishers in the entire set of entries
+
+	const publishers = [];
+
+	Entry.find({}, function(err, foundEntries)
+	{
+		foundEntries.forEach((entry) =>
+		{
+			if (!publishers.includes(entry.publisher)) {publishers.push(entry.publisher);}
+		});
+
+		res.json(publishers);
+	});
+});
 
 
 router.get('/insights/forauthor/:author', function(req, res)
@@ -209,7 +243,7 @@ router.get('/insights/forpublisher/:publisher', function(req, res)
 
 
 
-router.get('/insights', async function(req, res)
+router.get('/insights/all', async function(req, res)
 {
 	let categories =
 	[//====================
@@ -306,8 +340,115 @@ router.get('/insights', async function(req, res)
 		}
 
 		console.log(insights);
-		res.render('entry/insights.ejs', {insights: insights});
+		//res.render('entry/insights.ejs', {insights: insights});
+		res.json(insights);
 	});
+});
+
+
+
+
+router.get('/insights', async function(req, res)
+{
+	// let categories =
+	// [//====================
+	// 	'all',
+	// 	'news',
+	// 	'opinion',
+	// 	'fiction',
+	// 	'marketing',
+	// 	'business',
+	// 	'legal',
+	// 	'technical',
+	// 	'academic',
+	// 	'oratory',
+	// 	'other'
+	// ];//===================
+
+	let insights =
+	await {
+		all:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		news:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		opinion:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		fiction:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		marketing:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		business:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		legal:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		technical:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		academic:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		oratory:
+			{
+				quantity: 0,
+				avgEng: 0
+			},
+		other:
+			{
+				quantity: 0,
+				avgEng: 0
+			}
+	};
+	// await Entry.find({}, function(err, foundEntries)
+	// {
+	// 	//dump in raw data:
+	// 	for (let i = 0; i < foundEntries.length; i++)
+	// 	{
+	// 		if (foundEntries[i].contentType == 'non-fiction') {foundEntries[i].contentType = 'other';}
+	// 		//console.log(`contentType: ${foundEntries[i].contentType}`);
+			
+			
+	// 		insights['all'].quantity++;
+	// 		insights['all'].avgEng = insights['all'].avgEng + foundEntries[i].engagementScore;
+
+	// 		insights[foundEntries[i].contentType].quantity++;
+	// 		insights[foundEntries[i].contentType].avgEng = insights[foundEntries[i].contentType].avgEng + foundEntries[i].engagementScore;
+	// 	}
+	// 	//Transform the data:
+	// 	for (let i = 0; i < categories.length; i++)
+	// 	{
+	// 		insights[categories[i]].avgEng = insights[categories[i]].avgEng / insights[categories[i]].quantity;
+	// 	}
+
+	// 	console.log(insights);
+	// 	res.render('entry/insights.ejs', {insights: insights});
+	// });
+
+	res.render('entry/insights.ejs', {insights: insights});
 });
 
 
