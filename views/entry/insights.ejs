@@ -19,7 +19,7 @@
 
 		<div class="insightCategory">
 			<h3>Find average engagement score for a particular publisher:</h3><br>
-			<input type="text" placeholder="Publisher Name" id="publisher" oninput="pubInfoChange()"></input>
+			<input autocomplete="off" type="text" placeholder="Publisher Name" id="publisher" oninput="pubInfoChange()"></input>
 			<div class="suggestionBox" id="pubSuggest" style="display: none"></div>
 			<button onClick="pubInfoClick()">Go</button>
 			<p id="pubInfoText"></p>
@@ -27,7 +27,7 @@
 
 		<div class="insightCategory">
 			<h3>Find average engagement score for a particular author:</h3><br>
-			<input type="text" placeholder="Author Name" id="author" oninput="authInfoChange()"></input>
+			<input autocomplete="off" type="text" placeholder="Author Name" id="author" oninput="authInfoChange()"></input>
 			<div class="suggestionBox" id="authSuggest" style="display: none"></div>
 			<button onClick="authInfoClick()">Go</button>
 			<p id="authInfoText"></p>
