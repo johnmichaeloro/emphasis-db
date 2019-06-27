@@ -62,7 +62,9 @@ const sentenceArrayMaker = (array) => {
         // this loops through the paragraph based on the data to extract only
         // this sections text and put it into the sentence object
         for (let i = sectionString.index_begin; i <= loopEnd; i++){
+          if (paragraph.text[i]){
           sentence.text += paragraph.text[i]
+        }
         }
 
         // this loop then goes through the created section and adds
@@ -108,6 +110,7 @@ const sentenceArrayMaker = (array) => {
 
         // then we push this created sentence object, which contains the color data
         // and all of the spans, into the sentence array, which will be displayed on the page
+
         sentenceArray.push(sentence);
 
         }
