@@ -15,98 +15,109 @@
 
 		<h2>Insights</h2>
 
-		<p>Find average engagement score for a particular publisher:</p><br>
-		<input type="text" placeholder="Publisher Name" id="publisher"></input>
-		<button onClick="pubInfoClick()">Go</button>
-		<p id="pubInfoText"></p>
+		<p id="msg"></p>
 
+		<div class="insightCategory">
+			<h3>Find average engagement score for a particular publisher:</h3><br>
+			<input type="text" placeholder="Publisher Name" id="publisher" oninput="pubInfoChange()"></input>
+			<div class="suggestionBox" id="pubSuggest" style="display: none"></div>
+			<button onClick="pubInfoClick()">Go</button>
+			<p id="pubInfoText"></p>
+		</div>
 
-		<p>Find average engagement score for a particular author:</p><br>
-		<input type="text" placeholder="Author Name" id="author"></input>
-		<button onClick="authorInfoClick()">Go</button>
-		<p id="authorInfoText"></p>
+		<div class="insightCategory">
+			<h3>Find average engagement score for a particular author:</h3><br>
+			<input type="text" placeholder="Author Name" id="author" oninput="authInfoChange()"></input>
+			<div class="suggestionBox" id="authSuggest" style="display: none"></div>
+			<button onClick="authInfoClick()">Go</button>
+			<p id="authInfoText"></p>
+		</div>
 
-		<p>
-			Some quick statistics on the Emphasis-DB Database!
-		</p><br>
+		<br><br>
+
+		<h3>Some quick statistics on the Emphasis-DB Database!</h3><br>
+
+		<button onClick="getAllInsights()">Click to retrieve data</button>
+
+		<p id='all-msg'></p>
 
 		<hr>
 
 		<p>
 			<div class="insightCategory">
 			<div class="categoryTitle">ALL:</div><br>
-			Quantity: <%=insights.all.quantity%><br>
+			Quantity: <span id='qty-all'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.all.avgEng)%>
+				<span id='eng-all'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">News:</div><br>
-			Quantity: <%=insights.news.quantity%><br>
+			Quantity: <span id='qty-news'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.news.avgEng)%>
+				<span id='eng-news'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Opinion:</div><br>
-			Quantity: <%=insights.opinion.quantity%><br>
+			Quantity: <span id='qty-opinion'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.opinion.avgEng)%>
+				<span id='eng-opinion'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Fiction:</div><br>
-			Quantity: <%=insights.fiction.quantity%><br>
+			Quantity: <span id='qty-fiction'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.fiction.avgEng)%>
+				<span id='eng-fiction'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Marketing:</div><br>
-			Quantity: <%=insights.marketing.quantity%><br>
+			Quantity: <span id='qty-marketing'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.marketing.avgEng)%>
+				<span id='eng-marketing'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Business:</div><br>
-			Quantity: <%=insights.business.quantity%><br>
+			Quantity: <span id='qty-business'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.business.avgEng)%>
+				<span id='eng-business'></span>
 			</div>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Legal:</div><br>
-			Quantity: <%=insights.legal.quantity%><br>
+			Quantity: <span id='qty-legal'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.legal.avgEng)%>
+				<span id='eng-legal'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Technical:</div><br>
-			Quantity: <%=insights.technical.quantity%><br>
+			Quantity: <span id='qty-technical'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.technical.avgEng)%>
+				<span id='eng-technical'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Academic:</div><br>
-			Quantity: <%=insights.academic.quantity%><br>
+			Quantity: <span id='qty-academic'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.academic.avgEng)%>
+				<span id='eng-academic'></span>
 			</div><br>
 		</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Oratory:</div><br>
-			Quantity: <%=insights.oratory.quantity%><br>
+			Quantity: <span id='qty-oratory'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.oratory.avgEng)%></div><br>
+				<span id='eng-oratory'></span></div><br>
 			</div>
 			<div class="insightCategory">
 			<div class="categoryTitle">Other:</div><br>
-			Quantity: <%=insights.other.quantity%><br>
+			Quantity: <span id='qty-other'></span><br>
 			Average engagement score: <div class="engagementScoreInsight" >
-				<%=Math.round(insights.other.avgEng)%>
+				<span id='eng-other'></span>
 			</div><br>
 		</div>
 			<br>

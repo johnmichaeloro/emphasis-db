@@ -129,7 +129,7 @@ router.get('/authors', function(req, res)
 	{
 		foundEntries.forEach((entry) =>
 		{
-			if (!authors.includes(entry.author)) {authors.push(entry.author);}
+			if (entry.author && !authors.includes(entry.author)) {authors.push(entry.author);}
 		});
 
 		res.json(authors);
@@ -147,7 +147,7 @@ router.get('/publishers', function(req, res)
 	{
 		foundEntries.forEach((entry) =>
 		{
-			if (!publishers.includes(entry.publisher)) {publishers.push(entry.publisher);}
+			if (entry.publisher && !publishers.includes(entry.publisher)) {publishers.push(entry.publisher);}
 		});
 
 		res.json(publishers);
