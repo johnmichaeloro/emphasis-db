@@ -13,6 +13,7 @@ const sentenceArrayMaker = require('../js/sentences')
 const engagementScoreCalc = require('../js/engagementScoreCalc')
 const stringSanitizer = require('../js/stringSanitizer');
 
+//comment
 
 const CronJob = require('cron').CronJob;
 
