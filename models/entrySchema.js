@@ -19,6 +19,7 @@ const entrySchema = new Schema
 		}],
 		data: Schema.Types.Mixed,
 		engagementScore: Number,
+		private: Boolean
 	}
 );
 

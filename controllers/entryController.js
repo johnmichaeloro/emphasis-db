@@ -641,6 +641,7 @@ router.post('/', async function(req, res) {
 			publicationYear: req.body.publicationYear,
 			contentType: req.body.contentType,
 			publisher: req.body.publisher,
+			private: req.body.private == "private",
 			text: [],
 			data: {},
 			sentences: [],
@@ -706,7 +707,8 @@ router.get('/:id', function(req, res)
 					res.render('entry/show.ejs', {
 						entry: foundEntry,
 						text: text,
-						username: foundUser.displayname
+						username: foundUser.displayname,
+						userId: foundEntry.userId
 					});//end of res.render
 				}
 			});
@@ -759,6 +761,7 @@ router.put('/:id', async function(req, res)
 			publicationYear: req.body.publicationYear,
 			contentType: req.body.contentType,
 			publisher: req.body.publisher,
+			private: req.body.private == "private",
 			text: [],
 			data: {},
 			sentences: [],

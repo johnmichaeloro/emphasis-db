@@ -40,7 +40,20 @@
 					        <option value="other">Other</option>
 								</select><br/><br/>
 			Publisher:<br/>
-			<input class="entryInput" type="text" name="publisher" value="<%=entry.publisher%>"><br/><br/>
+			<input class="entryInput" type="text" name="publisher" value="<%=entry.publisher%>"><br/>
+			<br/>
+			Visibility:
+			<select type="text" name="private" required>
+				<% if (!entry.private) { %>
+					<option value="public">Public</option>
+					<option value="private">Private</option>
+				<% }	%>
+				<% if (entry.private) { %>
+					<option value="private">Private</option>
+					<option value="public">Public</option>
+				<% }	%>
+			</select>
+			<br/>
 
 			<button type="submit">Submit Entry</button>
 		</form>
