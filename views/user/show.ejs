@@ -50,9 +50,16 @@
 			            <div class="entryInfo"><%=entries[i].publicationYear%></div>
 			            <div class="entryInfo"><%=entries[i].engagementScore%> Engagement</div>
 			            </div>
-			            <p class="col-md-12 entryPDisplay">
+			            <% if (!entries[i].private) { %>
+			              <p class="col-md-12 entryPDisplay">
 			                <%=entries[i].text[0].text%>
-			            </p>
+			              </p>
+			            <% }  %>
+			            <% if (entries[i].private) { %>
+			              <p class="col-md-12 entryPDisplay">
+			                <i>This entry has been marked as private</i>
+			              </p>
+			            <% }  %>
 			        </div>
 			        </a>
 			      </div>
